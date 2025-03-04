@@ -1,5 +1,6 @@
 # Environment variables
 *.env
+*.streamlit/
 
 # Credentials and configuration
 *.json

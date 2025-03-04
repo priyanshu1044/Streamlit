@@ -7,12 +7,13 @@ import os
 from google.oauth2 import service_account
 
 # Initialize BigQuery client with credentials from Streamlit secrets
-# Convert the private key string to proper format
 credentials_info = st.secrets["gcp_service_account"]
-credentials_info["private_key"] = credentials_info["private_key"].replace('\\n', '\n')
+# Create a new dictionary with the modified private key
+credentials_dict = dict(credentials_info)
+credentials_dict["private_key"] = credentials_dict["private_key"].replace('\\n', '\n')
 
 bigquery_credentials = service_account.Credentials.from_service_account_info(
-    credentials_info
+    credentials_dict
 )
 
 # Initialize BigQuery client
